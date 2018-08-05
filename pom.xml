@@ -36,6 +36,18 @@
 
   <build>
     <finalName>JavaWebApp</finalName>
+    <filters>
+      <filter>${project.basedir}/src/main/resources/db-${env}.properties</filter>
+    </filters>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
@@ -80,4 +92,21 @@
       </plugins>
     </pluginManagement>
   </build>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <env>dev</env>
+      </properties>
+    </profile>
+    <profile>
+      <id>demo</id>
+      <properties>
+        <env>demo</env>
+      </properties>
+    </profile>
+  </profiles>
 </project>
